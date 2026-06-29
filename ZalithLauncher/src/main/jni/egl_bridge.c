@@ -290,3 +290,23 @@ EXTERNAL_API void pojavSwapInterval(int interval) {
 
 }
 
+
+// ═══════════════════════════════════════════════════════════════════════
+// NEXUS VK — Exportar ANativeWindow para o VulkanMod
+// Chamado por AndroidSurfaceCreator.java no VulkanMod via ZLBridge
+// ═══════════════════════════════════════════════════════════════════════
+JNIEXPORT jlong JNICALL
+Java_com_movtery_zalithlauncher_bridge_ZLBridge_getNativeWindow(
+    JNIEnv* env, ABI_COMPAT jclass clazz)
+{
+    (void)env;
+    if (!pojav_environ || !pojav_environ->pojavWindow) {
+        __android_log_print(ANDROID_LOG_ERROR, "ZLBridge",
+            "getNativeWindow: pojavWindow is NULL!");
+        return 0L;
+    }
+    ANativeWindow* window = pojav_environ->pojavWindow;
+    __android_log_print(ANDROID_LOG_INFO, "ZLBridge",
+        "getNativeWindow: returning %p", window);
+    return (jlong)(uintptr_t)window;
+}
