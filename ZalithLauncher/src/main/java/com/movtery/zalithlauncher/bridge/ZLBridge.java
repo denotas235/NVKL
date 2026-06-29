@@ -72,6 +72,9 @@ public final class ZLBridge {
     @Keep public static native void moveWindow(int xOffset, int yOffset);
     @Keep public static native int[] renderAWTScreenFrame();
 
+    // NEXUS VK — Expõe ANativeWindow ao VulkanMod via JNI
+    @Keep public static native long getNativeWindow();
+
     //Input
     @Keep public static native void sendInputData(int type, int i1, int i2, int i3, int i4);
     @Keep public static native void clipboardReceived(String data, String mimeTypeSub);

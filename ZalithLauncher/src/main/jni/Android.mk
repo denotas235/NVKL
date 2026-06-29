@@ -99,3 +99,15 @@ include $(BUILD_SHARED_LIBRARY)
 # delete fake libs after linked
 $(info $(shell (rm $(HERE_PATH)/../jniLibs/*/libawt_headless.so)))
 
+
+
+# ═══════════════════════════════════════════════════════════════════════
+# NEXUS VK RENDER — EGL/GL stub + VkSurfaceKHR bridge para o VulkanMod
+# ═══════════════════════════════════════════════════════════════════════
+LOCAL_PATH := $(HERE_PATH)
+include $(CLEAR_VARS)
+LOCAL_MODULE        := Nexus_VK_Render
+LOCAL_LDLIBS        := -ldl -llog -lEGL -landroid
+LOCAL_SRC_FILES     := nexus_vk_render.c
+LOCAL_CFLAGS        := -fPIC -O2
+include $(BUILD_SHARED_LIBRARY)
